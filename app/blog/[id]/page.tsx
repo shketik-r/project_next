@@ -1,22 +1,19 @@
-// import type {Metadata} from "next";
 
 export type paramsType = Promise<{ id: string }>;
-
 type Props = {
     params: paramsType;
 };
 
-// export async function generateMetadata(PageProps: { params: Params }):Promise<Metadata> {
-//     const { id } = await PageProps.params
-//     const post = await getPost(id);
-//     return{
-//         title: `Пост: ${post.title}`,
-//     }
+
+// export async function generateStaticParams() {
+//     const posts = await fetch('https://jsonplaceholder.typicode.com/posts').then((res) => res.json())
+//     return posts.map(({post}:{id:string|number}) => ({
+//         id: post.id.toString(),
+//     }))
 // }
 
-async function getPost(id) {
-    const ids = await id;
-    const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${ids}`);
+async function getPost(id:string) {
+    const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
     return post.json();
 }
 

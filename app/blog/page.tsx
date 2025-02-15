@@ -1,4 +1,6 @@
-import type { Metadata } from "next";
+'use server'
+
+
 import Link from "next/link";
 
 // export const metadata: Metadata = {
@@ -7,45 +9,47 @@ import Link from "next/link";
 // };
 
 async function getPosts() {
-  const posts = await fetch('https://jsonplaceholder.typicode.com/posts', {
-    next: {
-      revalidate: 60
-    }
-  });
+    const posts = await fetch('https://jsonplaceholder.typicode.com/posts', {
+        next: {
+            revalidate: 60
+        }
+    });
 
-  // if (!posts.ok) throw new Error('ошибка')
+    // if (!posts.ok) throw new Error('ошибка')
 
-  return posts.json();
+    return posts.json();
 }
 
 
 const Blog = async () => {
-  const posts = await getPosts();
+    const posts = await getPosts();
 
 
+    return (
+        <>
+            <h1 className="text-2xl text-center">Блог</h1>
 
-  return (
-    <>
-      <h1 className="text-2xl text-center">Блог</h1>
+            <div className="grid grid-cols-4 gap-2 mt-2 ">
+                {posts.map((post: {
+                    title: string;
+                    id: React.Key | null | undefined;
+                }) => {
+                    return (
+                        <Link
+                            className="border-gray-300 p-2 border-[1px] rounded-[10px] hover:border-gray-600"
+                            key={post.id}
+                            href={`/blog/${post.id}`}>
+                            <h2
+                                className="text-center text-sm line-clamp-2 leading-[1] font-bold">
+                                {post.title} 1
+                            </h2>
+                        </Link>
 
-      <div className="grid grid-cols-4 gap-2 mt-2">
-        {posts.map((post: any) => {
-          return (
-            <Link
-              className="border-gray-300 p-2 border-[1px] rounded-[10px] hover:border-gray-600"
-              key={post.id}
-              href={`/blog/${post.id}`}>
-              <h2
-                className="text-center text-sm line-clamp-2 leading-[1] font-bold">
-                {post.title}
-              </h2>
-            </Link>
-
-          )
-        })}
-      </div>
-    </>
-  )
+                    )
+                })}
+            </div>
+        </>
+    )
 }
 
 export default Blog
