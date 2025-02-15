@@ -1,4 +1,4 @@
-import type {Metadata} from "next";
+// import type {Metadata} from "next";
 
 type paramsType = Promise<{ id: string }>;
 
@@ -10,8 +10,9 @@ type paramsType = Promise<{ id: string }>;
 //     }
 // }
 
-async function getPost(id: string) {
-    const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+async function getPost(id) {
+    const ids = await id;
+    const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${ids}`, {
         next: {
             revalidate: 60,
         }
