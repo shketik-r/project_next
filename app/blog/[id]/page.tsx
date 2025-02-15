@@ -1,8 +1,21 @@
+'use server'
+
+import type {Metadata} from "next";
 
 export type paramsType = Promise<{ id: string }>;
 type Props = {
     params: paramsType;
 };
+
+
+export async function generateMetadata({ params }: Props):Promise<Metadata> {
+  const { id } = await params
+  const post = await getPost(id);
+  return{
+      title: `Пост: ${post.title}`,
+  }
+}
+
 
 
 // export async function generateStaticParams() {
