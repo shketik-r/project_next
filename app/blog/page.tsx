@@ -13,8 +13,6 @@ async function getPosts() {
         }
     });
 
-    // if (!posts.ok) throw new Error('ошибка')
-
     return posts.json();
 }
 
@@ -39,7 +37,7 @@ const Blog = async () => {
                             href={`/blog/${post.id}`}>
                             <h2
                                 className="text-center text-sm line-clamp-2 leading-[1] font-bold">
-                                {post.title} 1
+                              {`#${post.id}`} - {post.title}
                             </h2>
                         </Link>
 
