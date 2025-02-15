@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 async function getPosts() {
-    const posts = await fetch('https://jsonplaceholder.typicode.com/posts1', {
+    const posts = await fetch('https://jsonplaceholder.typicode.com/posts', {
         next: {
             revalidate: 60
         }
@@ -19,13 +19,7 @@ async function getPosts() {
 }
 
 
-type TypePost = {
-    type: {
-        id: number;
-        title: string;
-        body: string;
-    }
-}
+
 
 
 const Blog = async () => {
