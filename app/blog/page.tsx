@@ -18,18 +18,24 @@ async function getPosts() {
   return posts.json();
 }
 
-
+type NewType = {
+  id: string,
+  title: string,
+};
 
 
 
 const Blog = async () => {
   const posts = await getPosts();
+
+
+
   return (
     <>
       <h1 className="text-2xl text-center">Блог</h1>
 
       <div className="grid grid-cols-4 gap-2 mt-2">
-        {posts.map((post: any) => {
+        {posts.map((post: NewType) => {
           return (
             <Link
               className="border-gray-300 p-2 border-[1px] rounded-[10px] hover:border-gray-600"
