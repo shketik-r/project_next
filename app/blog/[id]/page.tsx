@@ -3,7 +3,7 @@ import type {Metadata} from "next";
 
 type Props={
   params:{
-      id:number;
+      id:any;
   }
 }
 
@@ -20,7 +20,7 @@ export async function generateMetadata({params:{id}}:Props):Promise<Metadata> {
 
 
 
-async function getPost(id: number) {
+async function getPost(id: any) {
     const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
         next: {
             revalidate: 60,
