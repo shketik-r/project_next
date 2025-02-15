@@ -1,6 +1,6 @@
 // import type {Metadata} from "next";
 
-type paramsType = Promise<{ id: string }>;
+export type paramsType = Promise<{ id: string }>;
 
 // export async function generateMetadata(PageProps: { params: Params }):Promise<Metadata> {
 //     const { id } = await PageProps.params
@@ -20,8 +20,8 @@ async function getPost(id) {
     return post.json();
 }
 
-const Post = async ({params}: { params: paramsType; }) => {
-    const {id} = await params;
+const Post = async (props: { params: paramsType }) => {
+    const { id } = await props.params;
     const post = await getPost(id);
 
     return (
