@@ -19,7 +19,7 @@ async function getPosts() {
 }
 
 type NewType = {
-  id: string,
+  id: number,
   title: string,
 };
 
