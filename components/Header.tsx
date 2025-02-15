@@ -1,22 +1,17 @@
-import Link from "next/link";
+
+import { Navigation } from "./Navigation";
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'About', href: '/about' },
+]
 
 const Header = () => {
-    return (
-        <header>
-            <Link
-                className="px-3 py-1 rounded-[4px] bg-amber-100 hover:bg-amber-200"
-                href="/"
-            >Главная</Link>
-            <Link
-                className="px-3 py-1 rounded-[4px] bg-amber-100 hover:bg-amber-200"
-                href="/about"
-            >О нас</Link>
-
-            <Link
-                className="px-3 py-1 rounded-[4px] bg-amber-100 hover:bg-amber-200"
-                href="/blog"
-            >Блог</Link>
-        </header>
-    )
+  return (
+    <header>
+      <Navigation navLinks={navItems} />
+    </header>
+  )
 }
 export default Header

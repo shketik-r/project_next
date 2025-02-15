@@ -1,3 +1,4 @@
+
 import type {Metadata} from "next";
 
 export type paramsType = Promise<{ id: string }>;
@@ -15,13 +16,13 @@ export async function generateMetadata({ params }: Props):Promise<Metadata> {
 }
 
 
+export async function generateStaticParams() {
+  const posts = await fetch('https://jsonplaceholder.typicode.com/posts').then((res) => res.json())
 
-// export async function generateStaticParams() {
-//     const posts = await fetch('https://jsonplaceholder.typicode.com/posts').then((res) => res.json())
-//     return posts.map(({post}:{id:string|number}) => ({
-//         id: post.id.toString(),
-//     }))
-// }
+  return posts.map((post: { id: string|number; }) => ({
+    id: post.id.toString(),
+  }))
+}
 
 async function getPost(id:string) {
     const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
