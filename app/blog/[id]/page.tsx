@@ -2,6 +2,10 @@
 
 export type paramsType = Promise<{ id: string }>;
 
+type Props = {
+    params: paramsType;
+};
+
 // export async function generateMetadata(PageProps: { params: Params }):Promise<Metadata> {
 //     const { id } = await PageProps.params
 //     const post = await getPost(id);
@@ -12,16 +16,12 @@ export type paramsType = Promise<{ id: string }>;
 
 async function getPost(id) {
     const ids = await id;
-    const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${ids}`, {
-        next: {
-            revalidate: 60,
-        }
-    });
+    const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${ids}`);
     return post.json();
 }
 
-const Post = async (props: { params: paramsType }) => {
-    const { id } = await props.params;
+const Post = async ({ params }: Props) => {
+    const { id } = await params;
     const post = await getPost(id);
 
     return (
