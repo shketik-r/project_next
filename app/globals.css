@@ -9,7 +9,7 @@ body{
 
 
 
-header, footer{
+header, footer, .header{
     @apply flex gap-3 p-3 rounded-xl border-2 justify-center
     bg-gray-800
 }
