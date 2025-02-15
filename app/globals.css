@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    @apply p-3
+}
+
+
+
+
+header, footer{
+    @apply flex gap-3 p-3 rounded-xl border-2 justify-center
+    bg-gray-800
+}
+
