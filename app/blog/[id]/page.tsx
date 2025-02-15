@@ -1,5 +1,3 @@
-'use server'
-
 import type {Metadata} from "next";
 
 export type paramsType = Promise<{ id: string }>;
