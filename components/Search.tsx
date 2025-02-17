@@ -4,8 +4,30 @@ import { usePosts } from "@/store/"
 
 const Search = () => {
 
+
+  // types.ts
+  interface Post {
+    id: number;
+    title: string;
+    content: string;
+    // добавьте другие поля, которые есть у вашего поста
+  }
+
+
+  interface PostsState {
+    posts: Post[];
+    loading: boolean;
+    getAllPosts: () => Promise<void>;
+    getPostsBySearch: (search: string) => Promise<void>;
+  }
+
+
+
   const [search, setSearch] = useState('');
-  const getPostsBySearch = usePosts((state: { getPostsBySearch: unknown }) => state.getPostsBySearch)
+  const getPostsBySearch = usePosts((state: PostsState) => state.getPostsBySearch)
+
+
+
 
   const handelSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
