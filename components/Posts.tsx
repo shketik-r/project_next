@@ -11,7 +11,7 @@ import { useShallow } from "zustand/shallow";
 
 const Posts = () => {
   const [posts, loading, getAllPosts] = usePosts(useShallow(
-    (state) => {
+    (state:{loading: boolean, getAllPosts: () => Promise<void>, posts: any[]}) => {
       return [state.posts, state.loading, state.getAllPosts];
     }
   ));
@@ -22,7 +22,7 @@ const Posts = () => {
   useEffect(() => {
     if (!hasFetchedPosts.current && !loading) {
       hasFetchedPosts.current = true;
-      getAllPosts();
+     getAllPosts();
     }
   }, [loading, getAllPosts])
 
