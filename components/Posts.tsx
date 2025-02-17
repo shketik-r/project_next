@@ -11,7 +11,7 @@ import { useShallow } from "zustand/shallow";
 
 const Posts = () => {
   const [posts, loading, getAllPosts] = usePosts(useShallow(
-    (state:{loading: boolean, getAllPosts: () => Promise<void>, posts: any[]}) => {
+    (state:{loading: boolean, getAllPosts: () => Promise<void>, posts: unknown[]}) => {
       return [state.posts, state.loading, state.getAllPosts];
     }
   ));
