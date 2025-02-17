@@ -4,7 +4,24 @@ import { create } from "zustand";
 // import { createStore } from 'zustand/vanilla'
 
 
-export const usePosts = create((set) => ({
+
+// types.ts
+ interface Post {
+  id: number;
+  title: string;
+  content: string;
+  // добавьте другие поля, которые есть у вашего поста
+}
+
+ interface PostsState {
+  posts: Post[];
+  loading: boolean;
+  getAllPosts: () => Promise<void>;
+  getPostsBySearch: (search: string) => Promise<void>;
+}
+
+
+export const usePosts = create<PostsState>((set) => ({
   posts: [],
   loading: false,
 

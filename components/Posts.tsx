@@ -9,9 +9,18 @@ import { useShallow } from "zustand/shallow";
 
 
 
+// types.ts
+interface Post {
+  id: number;
+  title: string;
+  content: string;
+  // добавьте другие поля, которые есть у вашего поста
+}
+
+
 const Posts = () => {
   const [posts, loading, getAllPosts] = usePosts(useShallow(
-    (state:{loading: boolean, getAllPosts: () => Promise<void>, posts: unknown[]}) => {
+    (state) => {
       return [state.posts, state.loading, state.getAllPosts];
     }
   ));
@@ -22,14 +31,14 @@ const Posts = () => {
   useEffect(() => {
     if (!hasFetchedPosts.current && !loading) {
       hasFetchedPosts.current = true;
-     getAllPosts();
+      getAllPosts();
     }
   }, [loading, getAllPosts])
 
 
   return loading ? <LoadingPost /> : (
     <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2 mt-2  ">
-      {posts.map((post) => {
+      {posts.map((post: Post) => {
         return (
           <Link
             className="border-gray-300 p-2 border-[1px] rounded-[10px] hover:border-gray-600"
